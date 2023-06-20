@@ -6,8 +6,7 @@ import java.util.List;
 
 public class User {
     private String name;
-
-    @JsonIgnore
+    
     private List<ChatterPost> chatterPosts;
 
     public User(String name) {
