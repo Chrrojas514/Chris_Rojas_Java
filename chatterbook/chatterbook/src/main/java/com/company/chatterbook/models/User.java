@@ -1,12 +1,10 @@
 package com.company.chatterbook.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.List;
 
 public class User {
     private String name;
-    
+
     private List<ChatterPost> chatterPosts;
 
     public User(String name) {

@@ -2,10 +2,8 @@ package com.company.chatterbook.controller;
 
 import com.company.chatterbook.models.ChatterPost;
 import com.company.chatterbook.models.User;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,10 +41,12 @@ public class ChatterbookController {
     }
 
     @RequestMapping(value = "/Chatterpost/users", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
     public List<User> getUserList() { return userList; }
 
     // Used https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html as a resource
     @RequestMapping(value = "/Chatterpost/users/{name}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
     public User getUser(@PathVariable String name) {
         return userList.stream()
                 .filter(targetUser -> targetUser.getName().equals(name))
@@ -54,6 +54,7 @@ public class ChatterbookController {
     }
 
     @RequestMapping(value = "/Chatterpost/users/{name}/chatterPosts", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
     public List<ChatterPost> getChatterPostsFromUser(@PathVariable String name) {
         User userChatterPosts = userList.stream()
                             .filter(targetUser -> targetUser.getName().equals(name))
