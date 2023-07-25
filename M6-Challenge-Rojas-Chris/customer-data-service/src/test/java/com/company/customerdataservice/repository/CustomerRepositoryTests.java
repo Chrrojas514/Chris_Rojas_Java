@@ -19,7 +19,7 @@ public class CustomerRepositoryTests {
     CustomerRepository repo;
 
     @BeforeEach
-    public void setup() throws Exception {
+    public void setup() {
         repo.deleteAll();
     }
 
@@ -127,12 +127,12 @@ public class CustomerRepositoryTests {
         customer.setPostalCode("10470");
         customer.setCountry("United States");
 
-        // Assign ID
-        customer.setId(5);
+        // Have DB assign an ID
         customer = repo.save(customer);
+        Integer searchFor = customer.getId();
 
         //Fetch customer by ID
-        Optional<Customer> custCheck = repo.findById(5);
+        Optional<Customer> custCheck = repo.findById(searchFor);
 
         //Assert
         assertEquals(customer, custCheck.get());
