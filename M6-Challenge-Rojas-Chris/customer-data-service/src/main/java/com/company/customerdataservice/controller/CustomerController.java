@@ -24,9 +24,13 @@ public class CustomerController {
     @GetMapping("/customers/{id}")
     public Customer getCustomerById(@PathVariable Integer id) {
         Optional<Customer> target = customerRepository.findById(id);
-        Customer found = target.isPresent() ? target.get() : null;
+        return target.isPresent() ? target.get() : null;
 
-        return found;
+    }
+
+    @GetMapping("/customers")
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
     }
 
     @DeleteMapping("/customers/{id}")
