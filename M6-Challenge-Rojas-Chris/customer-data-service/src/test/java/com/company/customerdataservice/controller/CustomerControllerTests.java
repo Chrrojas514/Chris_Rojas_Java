@@ -45,7 +45,7 @@ public class CustomerControllerTests {
         customer1.setAddressOne("446 Rockville Rd");
         customer1.setAddressTwo("PO 1655 Main St");
         customer1.setCity("Bronx");
-        customer1.setState("New York");
+        customer1.setState("ny");
         customer1.setPostalCode("10470");
         customer1.setCountry("United States");
 
@@ -59,7 +59,7 @@ public class CustomerControllerTests {
         customer2.setAddressOne("123 Mount View");
         customer2.setAddressTwo("165th St Northern Blvd");
         customer2.setCity("Queens");
-        customer2.setState("New York");
+        customer2.setState("ny");
         customer2.setPostalCode("11370");
         customer2.setCountry("United States");
 
@@ -73,7 +73,7 @@ public class CustomerControllerTests {
         customer3.setAddressOne("15 Church St");
         customer3.setAddressTwo("52 St Jacob Drive");
         customer3.setCity("Charleston");
-        customer3.setState("South Carolina");
+        customer3.setState("sc");
         customer3.setPostalCode("29461");
         customer3.setCountry("United States");
 
@@ -95,7 +95,7 @@ public class CustomerControllerTests {
         customer.setAddressOne("446 Rockville Rd");
         customer.setAddressTwo("PO 1655 Main St");
         customer.setCity("Bronx");
-        customer.setState("New York");
+        customer.setState("NY");
         customer.setPostalCode("10470");
         customer.setCountry("United States");
 
@@ -124,7 +124,7 @@ public class CustomerControllerTests {
         customer.setAddressOne("446 Rockville Rd");
         customer.setAddressTwo("PO 1655 Main St");
         customer.setCity("Bronx");
-        customer.setState("New York");
+        customer.setState("NY");
         customer.setPostalCode("10470");
         customer.setCountry("United States");
 
@@ -150,24 +150,24 @@ public class CustomerControllerTests {
     public void shouldFindByID() throws Exception {
         //Create customer
         Customer customer = new Customer();
-        customer.setId(10);
-        customer.setFirstName("John");
+        customer.setId(1);
+        customer.setFirstName("Batista");
         customer.setLastName("Smith");
-        customer.setEmail("johnsmith@mail.com");
-        customer.setCompany("BigCompany");
+        customer.setEmail("batistaSmith@mail.com");
+        customer.setCompany("wwe");
         customer.setPhone("646-535-4242");
         customer.setAddressOne("446 Rockville Rd");
         customer.setAddressTwo("PO 1655 Main St");
         customer.setCity("Bronx");
-        customer.setState("New York");
-        customer.setPostalCode("10470");
-        customer.setCountry("United States");
+        customer.setState("California");
+        customer.setPostalCode("90470");
+        customer.setCountry("us");
 
         //Change to json
         String output = mapper.writeValueAsString(customer);
 
         //Mock server calls
-        mockMvc.perform(get("/customers/10"))
+        mockMvc.perform(get("/customers/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.content().json(output));
@@ -190,9 +190,7 @@ public class CustomerControllerTests {
         customer.setPostalCode("10470");
         customer.setCountry("United States");
 
-        customerRepository.save(customer);
-
-        mockMvc.perform(get("/customers/us-state/ohio"))
+        mockMvc.perform(get("/customers/us/ohio"))
                 .andDo(print())
                 .andExpect(status().isOk());
 
